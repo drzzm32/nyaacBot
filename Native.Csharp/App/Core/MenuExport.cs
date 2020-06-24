@@ -1,7 +1,7 @@
 /*
- *	æ­¤ä»£ç ç”± T4 å¼•æ“æ ¹æ® MenuExport.tt æ¨¡æ¿ç”Ÿæˆ, è‹¥æ‚¨ä¸äº†è§£ä»¥ä¸‹ä»£ç çš„ç”¨å¤„, è¯·å‹¿ä¿®æ”¹!
+ *	´Ë´úÂëÓÉ T4 ÒıÇæ¸ù¾İ MenuExport.tt Ä£°åÉú³É, ÈôÄú²»ÁË½âÒÔÏÂ´úÂëµÄÓÃ´¦, ÇëÎğĞŞ¸Ä!
  *	
- *	æ­¤æ–‡ä»¶åŒ…å«é¡¹ç›® Json æ–‡ä»¶çš„èœå•å¯¼å‡ºå‡½æ•°.
+ *	´ËÎÄ¼ş°üº¬ÏîÄ¿ Json ÎÄ¼şµÄ²Ëµ¥µ¼³öº¯Êı.
  */
 using System;
 using System.Runtime.InteropServices;
@@ -14,77 +14,27 @@ namespace Native.Csharp.App.Core
 {
     public class MenuExport
     {
-		#region --æ„é€ å‡½æ•°--
+		#region --¹¹Ôìº¯Êı--
 		/// <summary>
-		/// é™æ€æ„é€ å‡½æ•°, æ³¨å†Œä¾èµ–æ³¨å…¥å›è°ƒ
+		/// ¾²Ì¬¹¹Ôìº¯Êı, ×¢²áÒÀÀµ×¢Èë»Øµ÷
 		/// </summary>
         static MenuExport ()
         {
-			// åˆ†å‘åº”ç”¨å†…äº‹ä»¶
+			// ·Ö·¢Ó¦ÓÃÄÚÊÂ¼ş
 			ResolveAppbackcall ();
         }
         #endregion
 
-		#region --ç§æœ‰æ–¹æ³•--
+		#region --Ë½ÓĞ·½·¨--
 		/// <summary>
-		/// è·å–æ‰€æœ‰çš„æ³¨å…¥é¡¹, åˆ†å‘åˆ°å¯¹åº”çš„äº‹ä»¶
+		/// »ñÈ¡ËùÓĞµÄ×¢ÈëÏî, ·Ö·¢µ½¶ÔÓ¦µÄÊÂ¼ş
 		/// </summary>
 		private static void ResolveAppbackcall ()
 		{
-			/*
-			 * Name: è®¾ç½®A
-			 * Function: _menuA
-			 */
-			if (Common.UnityContainer.IsRegistered<ICallMenu> ("è®¾ç½®A") == true)
-			{
-				Menu__menuA = Common.UnityContainer.Resolve<ICallMenu> ("è®¾ç½®A").CallMenu;
-			}
-
-			/*
-			 * Name: è®¾ç½®B
-			 * Function: _menuB
-			 */
-			if (Common.UnityContainer.IsRegistered<ICallMenu> ("è®¾ç½®B") == true)
-			{
-				Menu__menuB = Common.UnityContainer.Resolve<ICallMenu> ("è®¾ç½®B").CallMenu;
-			}
-
-
 		}
         #endregion
 
-		#region --å¯¼å‡ºæ–¹æ³•--
-		/*
-		 * Name: è®¾ç½®A
-		 * Function: _menuA
-		 */
-		public static event EventHandler<CqCallMenuEventArgs> Menu__menuA;
-		[DllExport (ExportName = "_menuA", CallingConvention = CallingConvention.StdCall)]
-		private static int Evnet__menuA ()
-		{
-			if (Menu__menuA != null)
-			{
-				Menu__menuA (null, new CqCallMenuEventArgs ("è®¾ç½®A"));
-			}
-			return 0;
-		}
-
-		/*
-		 * Name: è®¾ç½®B
-		 * Function: _menuB
-		 */
-		public static event EventHandler<CqCallMenuEventArgs> Menu__menuB;
-		[DllExport (ExportName = "_menuB", CallingConvention = CallingConvention.StdCall)]
-		private static int Evnet__menuB ()
-		{
-			if (Menu__menuB != null)
-			{
-				Menu__menuB (null, new CqCallMenuEventArgs ("è®¾ç½®B"));
-			}
-			return 0;
-		}
-
-
+		#region --µ¼³ö·½·¨--
 		#endregion
     }
 }

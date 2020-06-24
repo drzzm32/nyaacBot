@@ -1,7 +1,7 @@
 /*
- *	æ­¤ä»£ç ç”± T4 å¼•æ“æ ¹æ® StatusExport.tt æ¨¡æ¿ç”Ÿæˆ, è‹¥æ‚¨ä¸äº†è§£ä»¥ä¸‹ä»£ç çš„ç”¨å¤„, è¯·å‹¿ä¿®æ”¹!
+ *	´Ë´úÂëÓÉ T4 ÒıÇæ¸ù¾İ StatusExport.tt Ä£°åÉú³É, ÈôÄú²»ÁË½âÒÔÏÂ´úÂëµÄÓÃ´¦, ÇëÎğĞŞ¸Ä!
  *	
- *	æ­¤æ–‡ä»¶åŒ…å«é¡¹ç›® Json æ–‡ä»¶çš„æ‚¬æµ®çª—å¯¼å‡ºå‡½æ•°.
+ *	´ËÎÄ¼ş°üº¬ÏîÄ¿ Json ÎÄ¼şµÄĞü¸¡´°µ¼³öº¯Êı.
  */
 using System;
 using System.Runtime.InteropServices;
@@ -14,40 +14,40 @@ namespace Native.Csharp.App.Core
 {
     public class StatusExport
     {
-		#region --æ„é€ å‡½æ•°--
+		#region --¹¹Ôìº¯Êı--
 		/// <summary>
-		/// é™æ€æ„é€ å‡½æ•°, æ³¨å†Œä¾èµ–æ³¨å…¥å›è°ƒ
+		/// ¾²Ì¬¹¹Ôìº¯Êı, ×¢²áÒÀÀµ×¢Èë»Øµ÷
 		/// </summary>
         static StatusExport ()
         {
-			// åˆ†å‘åº”ç”¨å†…äº‹ä»¶
+			// ·Ö·¢Ó¦ÓÃÄÚÊÂ¼ş
 			ResolveAppbackcall ();
         }
         #endregion
 
-		#region --ç§æœ‰æ–¹æ³•--
+		#region --Ë½ÓĞ·½·¨--
 		/// <summary>
-		/// è·å–æ‰€æœ‰çš„æ³¨å…¥é¡¹, åˆ†å‘åˆ°å¯¹åº”çš„äº‹ä»¶
+		/// »ñÈ¡ËùÓĞµÄ×¢ÈëÏî, ·Ö·¢µ½¶ÔÓ¦µÄÊÂ¼ş
 		/// </summary>
 		private static void ResolveAppbackcall ()
 		{
 			/*
-			 * Name: è¿è¡Œæ—¶é—´
+			 * Name: ÔËĞĞÊ±¼ä
 			 * Function: _statusUptime
 			 */
-			if (Common.UnityContainer.IsRegistered<ICqStatus> ("è¿è¡Œæ—¶é—´") == true)
+			if (Common.UnityContainer.IsRegistered<ICqStatus> ("ÔËĞĞÊ±¼ä") == true)
 			{
-				Status_UPTIME = Common.UnityContainer.Resolve<ICqStatus> ("è¿è¡Œæ—¶é—´").CqStatus;
+				Status_UPTIME = Common.UnityContainer.Resolve<ICqStatus> ("ÔËĞĞÊ±¼ä").CqStatus;
 			}
 
 
 		}
         #endregion
 
-		#region --å¯¼å‡ºæ–¹æ³•--
+		#region --µ¼³ö·½·¨--
 		/*
 		 * Id: 1
-		 * Name: è¿è¡Œæ—¶é—´
+		 * Name: ÔËĞĞÊ±¼ä
 		 * Title: UPTIME
 		 * Function: _statusUptime
 		 * Period: 1000
@@ -56,7 +56,7 @@ namespace Native.Csharp.App.Core
 		[DllExport (ExportName = "_statusUptime", CallingConvention = CallingConvention.StdCall)]
 		private static string Evnet__statusUptime ()
 		{
-			CqStatusEventArgs args = new CqStatusEventArgs (1, "è¿è¡Œæ—¶é—´", "UPTIME", 1000);
+			CqStatusEventArgs args = new CqStatusEventArgs (1, "ÔËĞĞÊ±¼ä", "UPTIME", 1000);
 			if (Status_UPTIME != null)
 			{
 				Status_UPTIME (null, args);

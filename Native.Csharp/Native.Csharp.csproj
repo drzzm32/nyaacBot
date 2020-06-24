@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Native.Csharp</RootNamespace>
-    <AssemblyName>Native.Csharp</AssemblyName>
+    <AssemblyName>cn.ac.nya.bot</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -67,6 +67,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.IO.Compression" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Numerics" />
@@ -120,6 +121,12 @@
     <Compile Include="App\Event\Event_AppMain.cs" />
     <Compile Include="App\Event\Event_CqExit.cs" />
     <Compile Include="App\Event\Event_CqStartup.cs" />
+    <Compile Include="App\Event\Event_GroupMsg.cs" />
+    <Compile Include="App\NSASM\funcList.cs" />
+    <Compile Include="App\NSASM\Helper.cs" />
+    <Compile Include="App\NSASM\NSASM.cs" />
+    <Compile Include="App\NSASM\paramList.cs" />
+    <Compile Include="App\NSASM\Util.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repair\Core\Kernel32.cs" />
     <Compile Include="Repair\Enum\LoadLibraryFlags.cs" />
@@ -128,7 +135,7 @@
     <Compile Include="Repair\ModuleInitializer.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Native.Csharp.json">
+    <None Include="cn.ac.nya.bot.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />

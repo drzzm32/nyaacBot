@@ -2,10 +2,14 @@
 using System.IO;
 using System.Net;
 using System.Xml;
+using System.Drawing;
 using System.Threading;
+using System.Windows.Forms;
+using System.Drawing.Drawing2D;
 using System.Collections.Generic;
 using Native.Csharp.Sdk.Cqp.EventArgs;
 using Native.Csharp.Sdk.Cqp.Interface;
+using Freezer.Core;
 
 namespace Native.Csharp.App.Event
 {
@@ -188,6 +192,21 @@ namespace Native.Csharp.App.Event
                 res += ("起订量：" + min + "+，单价：￥" + val + "\n");
                 res += ("规格：" + back + "，状态：" + has + "\n");
                 Common.CqApi.SendGroupMessage(e.FromGroup, res);
+
+                try
+                {
+                    var screenshotJob = ScreenshotJobBuilder.Create("https://so.szlcsc.com/global.html?k=" + arg)
+                    .SetBrowserSize(1920, 1080).SetCaptureZone(new CroppedZone(615, 730, 945, 301)).SetTrigger(new WindowLoadTrigger());
+                    Image image = screenshotJob.Freeze();
+
+                    var uuid = Guid.NewGuid().ToString("N");
+                    image.Save("data/image/" + uuid + ".png");
+                    string cqCode = Common.CqApi.CqCode_Image(uuid + ".png");
+                    Common.CqApi.SendGroupMessage(e.FromGroup, cqCode);
+                } catch (Exception ex)
+                {
+                    Common.CqApi.SendGroupMessage(e.FromGroup, "图片抓取出错（（（");
+                }
             }
         }
 
@@ -256,7 +275,27 @@ namespace Native.Csharp.App.Event
                     result += ("么有结果！" + "\n");
                 }
 
-                Common.CqApi.SendGroupMessage(e.FromGroup, result);
+                if (result.Length <= 128)
+                    Common.CqApi.SendGroupMessage(e.FromGroup, result);
+                else
+                {
+                    Common.CqApi.SendGroupMessage(e.FromGroup, result.Substring(0, 64) + " ... " + result.Substring(128, 64) + " ...");
+                    try
+                    {
+                        var screenshotJob = ScreenshotJobBuilder.Create("https://thwiki.cc/" + arg)
+                        .SetBrowserSize(512, 2048).SetCaptureZone(new CroppedZone(0, 0, 512, 2048)).SetTrigger(new WindowLoadTrigger());
+                        Image image = screenshotJob.Freeze();
+
+                        var uuid = Guid.NewGuid().ToString("N");
+                        image.Save("data/image/" + uuid + ".png");
+                        string cqCode = Common.CqApi.CqCode_Image(uuid + ".png");
+                        Common.CqApi.SendGroupMessage(e.FromGroup, cqCode);
+                    }
+                    catch (Exception ex)
+                    {
+                        Common.CqApi.SendGroupMessage(e.FromGroup, "图片抓取出错（（（");
+                    }
+                }
             }
         }
 
